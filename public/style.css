@@ -1,0 +1,236 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  color: #ffffff;
+  transition: background 1s ease;
+  overflow: hidden;
+}
+
+#weather-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.weather-clear {
+  background: linear-gradient(to top, #4a90e2, #89f7fe);
+}
+.weather-clouds {
+  background: linear-gradient(to top, #658bb5, #b7c8e0);
+}
+.weather-rain,
+.weather-drizzle {
+  background: linear-gradient(to top, #2c3e50, #4b6cb7);
+}
+.weather-thunderstorm {
+  background: linear-gradient(to top, #000000, #434343);
+}
+.weather-snow {
+  background: linear-gradient(to top, #606c88, #3f4c6b);
+}
+.weather-default {
+  background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+  }
+}
+.raindrop {
+  position: absolute;
+  background-color: #a0c4ff;
+  width: 1px;
+  height: 20px;
+  opacity: 0.8;
+  animation: fall linear infinite;
+}
+
+@keyframes drift {
+  from {
+    transform: translateX(-250px);
+  }
+  to {
+    transform: translateX(110vw);
+  }
+}
+
+.cloud {
+  position: absolute;
+  width: 200px;
+  height: 60px;
+  background: #f2f9fe;
+  border-radius: 60px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: drift linear infinite;
+}
+
+.cloud::before,
+.cloud::after {
+  content: "";
+  position: absolute;
+  background: #f2f9fe;
+  border-radius: 50%;
+}
+
+.cloud::before {
+  width: 100px;
+  height: 100px;
+  top: -50px;
+  left: 40px;
+}
+
+.cloud::after {
+  width: 60px;
+  height: 60px;
+  top: -30px;
+  right: 30px;
+}
+
+@keyframes flash {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.lightning {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  animation: flash 4s infinite;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 450px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+.header {
+  margin-bottom: 2rem;
+}
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+.subtitle {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #e0e0e0;
+}
+.weather-form {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+.glass-input {
+  width: 100%;
+  flex: 1;
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+.glass-input::placeholder {
+  color: #cccccc;
+}
+.glass-input:focus {
+  outline: none;
+  border-color: rgba(79, 70, 229, 0.7);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+}
+.weather-form button {
+  padding: 0.85rem 1.25rem;
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+.glowing-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px 0 #4f46e5, 0 0 20px 0 #4f46e5;
+}
+.weather-result {
+  display: none;
+}
+#weather-result:not(:empty) {
+  display: block;
+}
+#city-name {
+  font-size: 2rem;
+  font-weight: 600;
+}
+.weather-icon-container {
+  margin: 1rem auto;
+}
+.weather-icon-container svg {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 auto;
+}
+.temperature-display {
+  font-size: 4.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.description-display {
+  font-size: 1.25rem;
+  color: #e0e0e0;
+  text-transform: capitalize;
+  margin-top: 0.5rem;
+}
+.details-card {
+  margin-top: 2rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-around;
+}
+.detail-item {
+  text-align: center;
+}
+.detail-label {
+  font-size: 0.875rem;
+  color: #cccccc;
+}
+.detail-value {
+  font-size: 1.125rem;
+  font-weight: 600;
+}

@@ -5,15 +5,45 @@
     <title>Weather App</title>
     <link rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div class="app-container">
-      <h1>Weather App</h1>
-      <form id="weather-form">
-        <input type="text" id="city-input" placeholder="Enter city name" />
-        <button type="submit">Get Weather</button>
+    <div id="weather-background"></div>
+    <div class="app-container glass-card">
+      <header class="header">
+        <h1 class="title">WeatherGlass</h1>
+        <p class="subtitle">Your window to the weather</p>
+      </header>
+      <form id="weather-form" class="weather-form">
+        <input
+          type="text"
+          id="city-input"
+          placeholder="Enter city name..."
+          class="glass-input"
+        />
+        <button type="submit" class="glowing-btn">Search</button>
       </form>
-      <div id="weather-result"></div>
+      <div id="weather-result" class="weather-result">
+        <h2 id="city-name"></h2>
+        <div id="weather-icon" class="weather-icon-container"></div>
+        <p id="temperature" class="temperature-display"></p>
+        <p id="description" class="description-display"></p>
+        <div class="details-card glass-card">
+          <div class="detail-item">
+            <p class="detail-label">Humidity</p>
+            <p id="humidity" class="detail-value"></p>
+          </div>
+          <div class="detail-item">
+            <p class="detail-label">Wind</p>
+            <p id="wind-speed" class="detail-value"></p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="script.js"></script>
