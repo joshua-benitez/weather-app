@@ -28,6 +28,15 @@ document.getElementById('weather-form').addEventListener('submit', async (e) => 
         <h2>${escapeHTML(data.name)}, ${escapeHTML(data.sys.country)}</h2>
         <p>${escapeHTML(data.weather[0].description)}</p>
         <p>Temperature: ${escapeHTML(data.main.temp.toString())}°C</p>
+        <p>Feels like: ${data.main.feels_like}°C</p>
+        <p>Humidity: ${data.main.humidity}%</p>
+        <p>Wind Speed: ${data.wind.speed} m/s</p>
+        <p>Wind Direction: ${data.wind.deg}°</p>
+        <p>Visibility: ${data.visibility / 1000} km</p>
+        <p>Cloudiness: ${data.clouds.all}%</p>
+        <p>Sunrise: ${new Date(data.sys.sunrise * 1000).toLocaleTimeString()}</p>
+        <p>Sunset: ${new Date(data.sys.sunset * 1000).toLocaleTimeString()}</p>
+        <p>Last Updated: ${new Date(data.dt * 1000).toLocaleTimeString()}</p>
       `;
     } else {
       document.getElementById('weather-result').innerHTML = `<p>Weather data not available for this city.</p>`;
